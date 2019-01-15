@@ -1,10 +1,10 @@
 # This class just dumbs down a regular Array to be statically sized.
 class StaticArray
-  attr_reader :length 
+  attr_reader :length
   
   def initialize(length=0)
-    @store = Array.new(length)
-    @length = length;
+    @length = length
+    @store = []
   end
 
   # O(1)
@@ -14,10 +14,8 @@ class StaticArray
 
   # O(1)
   def []=(index, value)
-    if index < length
-      @store[index] = value
-    end
-    
+    raise "index out of bounds" if index > @length
+    @store[index] = value
   end
 
   protected
